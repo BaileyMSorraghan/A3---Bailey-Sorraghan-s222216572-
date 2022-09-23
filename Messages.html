@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <title>Messages Page</title>
+</head>
+<style>
+    body{
+    background: lightgrey;
+    }
+    .header {
+  margin-top: 10px;
+  padding: 20px;
+  text-align: center;
+  background: red;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+</style>
+<body>
+<div class="header">
+    <h1>Messages</h1>
+  </div>
+
+<div id="app">
+    {{message}}
+
+    <div>
+        <componenta title="No new messages">
+            {{title}}
+        </componenta>
+        <div>
+            <component-b></component-b>
+        </div>
+
+        <div id="app-4">
+            <ul>
+                <li v-for="item in todos">{{item.text}}</li>
+            </ul>
+            <div id="button-counter">
+                <button-counter></button-counter>
+              </div>
+      </div>
+
+    </div>
+</div>
+
+<script>
+    //Slot
+    let ComponentB = {
+        data() {
+            return {
+                componentbmessage: "Please check again later!"
+            }
+        },
+        template: "<div>{{componentbmessage}}<slot></slot></div>"
+    }
+
+    //Global Registration
+    Vue.component('componenta',{
+        props: ['title'],
+        
+        data(){
+            return {
+                componentamessage: "You have:"
+            }
+        },
+        template: '<div>{{componentamessage}} <br> {{title}}</div>'
+    })
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                message: "Welcome to your messages page"
+            }
+        },
+        components: {
+            'component-b':ComponentB
+        }
+    })
+
+    Vue.component('button-counter', {
+        data: function () {
+          return {
+          }
+        },
+        template: '<button v-on:click="count++">Click here to message others!</button>'
+      })
+      </script>
+<script>
+var app4 = new Vue({
+    el: '#app-4',
+    data: {
+      todos: [
+      ]
+    }
+  })
+</script>
+<script>
+    Vue.mixin({
+  created: function () {
+    var myOption = this.$options.myOption
+    if (myOption) {
+      console.log(myOption)
+    }
+  }
+})
+
+new Vue({
+  myOption: 'New Message!'
+})
+// => "New Message!"
+</script>
+
+</body>
+</html>

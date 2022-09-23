@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <title>Profile Page</title>
+</head>
+<style>
+        .header {
+  margin-top: 10px;
+  padding: 20px;
+  text-align: center;
+  background: red;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+}
+        .information {
+            background :lightgrey;
+            margin: 100px;
+        }
+        .app4 {
+            background: white;
+        }
+    body {
+        background: lightgrey;
+    }
+</style>
+<body>
+            <div class="header">
+        <h1>Your Profile</h1>
+      </div>
+
+      <div class="information">
+        <h1>Personal Information</h1>
+        <p1>This is where you input all of the information about yourself that others will use to search for you.</p1>
+      </div>
+      <div id="app4">
+        <br>
+        {{message}}
+
+        <select name="" id="">
+            <option v-for="item in list" value="item">{{item}}</option>
+        </select>
+    </div>
+      
+      <script>
+    new Vue({
+        el: "#app4",
+        data() {
+            return{
+                message: "How many days a week do you go to the gym?",
+                list: [1, 2, 3, 4, 5, 6, 7]
+            }
+        },
+    })
+</script>
+<script>
+    Vue.filter('capitalize', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
+})
+</script>
+      </script>
+<input type="checkbox" id="checkbox" v-model="checked" />
+<label for="checkbox">Heavy Weights</label>
+<input type="checkbox" id="checkbox" v-model="checked" />
+<label for="checkbox">Light Weights</label>
+<input type="checkbox" id="checkbox" v-model="checked" />
+<label for="checkbox">Cardio</label>
+<input type="checkbox" id="checkbox" v-model="checked" />
+<label for="checkbox">Bodybuilding</label>
+<input type="checkbox" id="checkbox" v-model="checked" />
+<label for="checkbox">Fitness</label>
+<input type="checkbox" id="checkbox" v-model="checked" />
+<label for="checkbox">Push</label>
+<input type="checkbox" id="checkbox" v-model="checked" />
+<label for="checkbox">Pull</label>
+<input type="checkbox" id="checkbox" v-model="checked" />
+<label for="checkbox">Legs</label>
+
+</body>
+</html>

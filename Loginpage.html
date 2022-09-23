@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <title>Log In Page</title>
+    
+</head>
+<style>
+    body {
+  background-color: grey;
+}
+</style>
+Username <input v-focus>
+<body>
+    <form>
+        <label for="email">Email</label>
+        <Vueemail
+            v-model="user.email"
+            :strength="score"
+            @input="updateStrength"
+        />
+    </form>
+    <br>
+    <form>
+        <label for="password">Password</label>
+        <VuePassword
+            v-model="user.password"
+            :strength="score"
+            @input="updateStrength"
+        />
+    </form>
+<script>
+new Vue({
+    el: '#app2',
+    components: {
+        Vueemail,
+    },
+    data: {
+        score: 0,
+        user: {
+            Vueemail: ''
+        }
+    },
+    methods: {
+        updateStrength(email) {
+        }
+    }
+});
+</script>
+<script>
+    new Vue({
+    el: '#app',
+    components: {
+        VuePassword,
+    },
+    data: {
+        score: 0,
+        user: {
+            password: ''
+        }
+    },
+    methods: {
+        updateStrength(password) {
+        }
+    }
+});
+</script>
+<script>
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus()
+  }
+})
+</script>
+
+<Vueemail
+    v-model="user.email"
+>
+    <div
+        v-slot:email-input="props"
+        class="control has-icons-left"
+    >
+        <input
+            class="input"
+            type="email"
+            placeholder="E-mail"
+            :value="props.value"
+            @input="props.updateemail"
+        />
+    </div>
+</Vueemail>
+<VuePassword
+    v-model="user.password"
+>
+    <div
+        v-slot:password-input="props"
+        class="control has-icons-left"
+    >
+        <input
+            class="input"
+            type="password"
+            placeholder="Password"
+            :value="props.value"
+            @input="props.updatePassword"
+        />
+    </div>
+</VuePassword>
+</body>
+</html>
